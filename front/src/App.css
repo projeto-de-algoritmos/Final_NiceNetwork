@@ -1,0 +1,224 @@
+:root {
+  @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,400;0,500;1,700&display=swap');
+  --background-pcolor: #080917;
+  --background-scolor: #191A29;
+  --background-tcolor: #192E0F;
+  --foreground-pcolor: #C7CD6A;
+}
+
+body {
+  background-color: var(--background-pcolor);
+  font-family: 'Roboto', sans-serif;
+}
+
+.app {
+  height: 100vh;
+  width: 100%;
+}
+
+.header {
+  height: 10%;
+  width: 100%;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 10.94%, var(--background-pcolor)), var(--foreground-pcolor);
+  font-size: 3em;
+  color: var(--background-pcolor);
+  text-align: center;
+  padding-top: 10px;
+}
+
+.app-body {
+  height: 88%;
+  display: flex;
+  justify-content: center;
+}
+
+.part {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
+
+.box {
+  margin-top: 1%;
+  margin-bottom: 1%;
+  height: 98%;
+  width: 97%;
+  background-color: var(--background-scolor);
+  border-radius: 26px;
+}
+
+.abas {
+  width: 33.33%;
+  height: 8%;
+  background-color: var(--foreground-pcolor);
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: left;
+}
+
+.abas:hover {
+  cursor: pointer;
+  background-color: #94984f;
+  animation-duration: 0.5s;
+  animation-name: abas;
+}
+
+@keyframes abas {
+  from {background-color: var(--foreground-pcolor);}
+  to {background-color: #94984F;}
+}
+
+.abas-selecionada {
+  width: 33.33%;
+  height: 8%;
+  background-color: #94984f;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  float: left;
+}
+
+.perfis {
+  margin-top: 3.5em;
+  width: 100%;
+  height: 90%;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.perfil {
+  min-height: 4em;
+  width: 90%;
+  background-color: #192E0F;
+  border: 7px solid #454D48;
+  border-radius: 8px;
+  margin-top: 0.2em;
+  display: flex;
+  align-items: center;
+}
+
+.nome-perfil {
+  width: 80%;
+  color: white;
+  font-size: large;
+  text-align: center;
+}
+
+.follow-button-not-followed {
+  height: 2em;
+  width: 5em;
+  background-color: #C7CD6A;
+  color: black;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.follow-button-followed {
+  height: 2em;
+  width: 5em;
+  background-color: #6A74CD;
+  color: black;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.search {
+  width: 98%;
+  height: 8%;
+  border: 0;
+  border-radius: 7px;
+  font-size: large;
+  padding-left: 2%;
+  background-color: #F5E5E0;
+}
+
+/* .search-items {
+  position: absolute;
+  z-index: 3;
+  height: auto;
+  width: 48.5%;
+  /* border-radius: 8px;
+  background-color: #6A74CD;
+}
+
+.search-item {
+  height: 3.5em;
+  min-width: 95%;
+  /* background-color: #192E0F;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  padding-left: 5%;
+} */
+
+.right-container {
+  margin-top: 0.8em;
+  height: 85%;
+  /* background-color: var(--foreground-pcolor); */
+  display: flex;
+  justify-content: center;
+}
+
+.perfil-view {
+  margin-top: 3em;
+  width: 94%;
+  height: 15em;
+  background-color: var(--background-tcolor);
+  border: 7px solid hsl(143, 5%, 29%);
+  border-radius: 8px;
+  /* display: flex;
+  flex-wrap: wrap;
+  justify-content: center; */
+}
+
+.user-name {
+  height: 30%;
+  margin-top: 1em;
+  min-width: 100%;
+  color: white;
+  font-size: x-large;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  /* background-color: var(--foreground-pcolor); */
+}
+
+.follow-div {
+  margin-top: 0.5em;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.follow-numbers-container {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.follow-numbers {
+  color: white;
+  width: 75%;
+  font-size: large;
+  display: flex;
+  justify-content: center;
+  margin-top: 0.8em;
+}
+
+.follow {
+  width: 50%;
+  display: flex;
+  justify-content: center;
+}
