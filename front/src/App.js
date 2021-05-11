@@ -2,11 +2,36 @@
 import './App.css';
 import {useState} from 'react';
 
+import UserView from './UserView';
 
 function App() {
   
   const [users, setUsers] = useState([{username: 'a'}, {username: 'b'}]);
   const [selectedTab, SelectTab] = useState(["abas-selecionada", "abas", "abas"]);
+  const [inputValue, setInputValue] = useState("");
+  const [searchResult, setSearchResult] = useState([]);
+  const [userView, setUserView] = useState();
+
+  const loadSearch = async (event) => {
+    if (event.target.value === "") {
+      setSearchResult([])
+      return;
+    };
+    let data = ["a", "b"];
+    setSearchResult(data);
+  }
+
+  const changeUserView = () => {
+    let user = {
+      name: "Sanic",
+      followed: false,
+      followedNumber: 20,
+      followingNumber: 30
+    }
+    document.getElementsByClassName("search")[0].value = "";
+    setSearchResult([]);
+    setUserView(user);
+  }
 
   return (
     <div className="app">
@@ -33,20 +58,14 @@ function App() {
         </div>
         <div className="part">
           <div className="box">
-            <input className="search"></input>
+            <input className="search" onChange={loadSearch}></input>
             <div className="right-container">
-                <div className="perfil-view">
-                  <div className="user-name">Super Mario World</div>
-                  <div className="follow-div">
-                   <button className="follow-button-not-followed">Seguir</button>
-                  </div>
-                  <div className="follow-numbers-container">
-                    <div className="follow-numbers">
-                      <div className="follow">Seguindo: 1854</div>
-                      <div className="follow">Seguidores: 50000</div>
-                    </div>
-                 </div>
-                </div>
+              <div className="search-items">
+                {searchResult.map((name) => 
+                  <div className="search-item" onClick={() => changeUserView(name)}>{name}</div>
+                )}
+              </div>
+              <UserView user={userView}/>
             </div>
           </div>
         </div>
