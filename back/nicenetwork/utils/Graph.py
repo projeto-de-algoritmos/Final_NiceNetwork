@@ -20,7 +20,7 @@ class Graph:
 
         
         graph = {}
-        file_pointer = open('nomes.txt')
+        file_pointer = open('nicenetwork/utils/nomes.txt')
         names = file_pointer.read().split('\n')
         while True:
             if not names[-1]:
@@ -82,6 +82,6 @@ class Graph:
         """ troca de usuario """
         self.name = newUser
         if not self.graph.get(newUser):
-            self.inser_verice(newUser)
+            self.insert_verice(newUser)
         self.suggestion = self.suggestion_update(user=newUser)
         return newUser
