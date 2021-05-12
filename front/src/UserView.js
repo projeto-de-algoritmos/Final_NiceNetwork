@@ -1,17 +1,34 @@
-function UserView({user}) {
+import api from './api';
+
+function UserView({user, callback, update}) {
 
 	if (user == undefined) {
-		user = {
-			name: "Super Mario World",
-			followed: true,
-			followedNumber: 10,
-			followingNumber: 5000
-		}
+		return (
+			<div className="perfil-view"></div>
+		)
 	}
 
-	let followButton = <button className="follow-button-not-followed">Seguir</button>;
-	if (user.followed)
-		followButton = <button className="follow-button-followed">Seguindo</button>;
+	const follow = async () => {
+		await api.get(`follow/${user.name}`);
+		callback(user.name);
+		update();
+	}
+
+	const unfollow = async () => {
+		await api.get(`unfollow/${user.name}`);
+		callback(user.name);
+		update();
+	}
+
+	const buttons = [
+		<button className="follow-button-not-followed" onClick={follow}>Seguir</button>,
+		<button className="follow-button-followed" onClick={unfollow}>Seguindo</button>
+	]
+
+	let followButton = buttons[0];
+
+	if (user.followedByCurrentUser)
+		followButton = buttons[1];
 
 	return (
 		<div className="perfil-view">

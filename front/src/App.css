@@ -101,6 +101,7 @@ body {
   margin-top: 0.2em;
   display: flex;
   align-items: center;
+  cursor: pointer;
 }
 
 .nome-perfil {
@@ -232,4 +233,17 @@ body {
   width: 50%;
   display: flex;
   justify-content: center;
+}
+
+.current-user-change {
+  position: absolute;
+  top: 1em;
+  right: 1em;
+  cursor: pointer;
+  color: black;
+  text-align: center;
+}
+
+.current-user-change:hover {
+  color: blue;
 }
