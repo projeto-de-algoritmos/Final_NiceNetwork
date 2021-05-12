@@ -7,7 +7,7 @@ from .utils.Graph import Graph
 
 import json
 
-network = Graph("GENILDO")
+network = Graph("JOHN")
 
 errors = {
     "nameError": "the name must contain only letters",
@@ -37,13 +37,16 @@ def listfollowed(request, name):
 
 def listrecommendations(request):
     """Retorna uma lista de usuários recomendados para um usuário"""
-    # recommendations = []
-    # for suggestion in network.suggestion:
-    #     if network.suggestion.get(suggestion) > 0:
-    #         recommendations.append(suggestion)
-
-    # return HttpResponse(json.dumps(network.suggestion))
-    return HttpResponse("wait")
+    network.suggestion_update()
+    suggestions = sorted(network.suggestion.items(), 
+                            key=lambda value: value[1], 
+                            reverse=True)
+    recommendations = []
+    for sug in suggestions:
+        if sug[0] in list(network.graph.get(network.name)):
+            continue
+        recommendations.append(sug[0])
+    return HttpResponse(json.dumps(recommendations[:200]))
 
 def getUser(request, name:str):
     """Retorna informações do usuário"""
@@ -56,7 +59,7 @@ def getUser(request, name:str):
         "name": name.capitalize(),
         "followingNumber": len(follows),
         "followedNumber": reverseGraph.get(name),
-        "followedByCurrentUser": network.name in reverseGraph
+        "followedByCurrentUser": name in network.graph.get(network.name)
     }
     return HttpResponse(json.dumps(userStats))
 
@@ -66,17 +69,27 @@ def setUser(request, name:str):
         return HttpResponseBadRequest(errors.get("nameError"))
     network.change_user(name.upper())
     return HttpResponse(network.name.capitalize())
-    # user = network.graph.get(network.name)
-    # return HttpResponse(json.dumps(user))
 
-def searchUser(request):
-    # TODO
-    return HttpResponse("ok5")
+def searchUser(request, name):
+    """Retorna um usuário com nome semelhante"""
+    # TODO implementação temporária
+    name = name.upper()
+    match = []
+    for username in list(network.graph.keys()):
+        print(name in username)
+        if name in username:
+            match.append(username)
+    return HttpResponse(json.dumps(match))
 
-def follow(request):
-    # TODO
-    return HttpResponse("ok6")
+def follow(request, name):
+    name = name.upper()
+    network.insert_edge(network.name, name)
+    return HttpResponse(name)
 
-def unfollow(request):
-    # TODO
-    return HttpResponse("ok7")
+def unfollow(request, name):
+    name = name.upper()
+    network.graph[network.name].remove(name)
+    return HttpResponse(name)
+
+def getCurrentUser(request):
+    return HttpResponse(network.name.capitalize())

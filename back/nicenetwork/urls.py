@@ -7,8 +7,9 @@ urlpatterns = [
     path('following/<str:name>', listfollowing),
     path('recom', listrecommendations),
     path('user/<str:name>', getUser),
-    path('search', searchUser),
-    path('follow', follow),
-    path('unfollow', unfollow),
-    path('change/<str:name>', setUser)
+    path('search/<str:name>', searchUser),
+    path('follow/<str:name>', follow),
+    path('unfollow/<str:name>', unfollow),
+    path('change/<str:name>', setUser),
+    path('currentuser', getCurrentUser)
 ]
