@@ -24,5 +24,3 @@ Para iniciar a aplicação, utilize o comando:
 ```
 npm start
 ```
-
-<!-- npm run build -->

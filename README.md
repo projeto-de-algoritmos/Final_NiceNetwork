@@ -10,10 +10,17 @@
 | 18/0029177 | Wagner Martins da Cunha |
 
 ## Sobre
-Descreva os objetivos do seu projeto e como ele funciona. 
+O Nice Network tem o intuito de simular algumas funcionalidades fundamentais de redes sociais, utilizando grafo para representar o ato de uma pessoa seguir outra, e também com programação dinâmica para encontrar nomes de outros usuários semelhantes ao que o usuário digita na barra de busca.
 
 ## Screenshots
-Adicione 3 ou mais screenshots do projeto em funcionamento.
+
+![print](./assets/print01.png)
+
+![print](./assets/print02.png)
+
+![print](./assets/print03.png)
+
+![print](./assets/print04.png)
 
 ## Instalação 
 **Linguagem**: Python / Javascript<br>
@@ -65,5 +72,3 @@ Caso prefira não utilizar o Docker, os passos para executar a aplicação de fo
 
 Após o carregamento dos ambientes do backend e do frontend, abra seu navegador no endereço **http://localhost:3000**.
 
-<!-- ## Outros 
-Quaisquer outras informações sobre seu projeto podem ser descritas abaixo. -->

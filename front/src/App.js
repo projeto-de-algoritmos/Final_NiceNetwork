@@ -1,4 +1,3 @@
-// import logo from './logo.svg';
 import './App.css';
 import {useState, useEffect} from 'react';
 
@@ -31,10 +30,6 @@ function App() {
     })()
   }, [inicialLoading])
 
-  // useEffect( () => {
-  //   changeTab(0);
-  // }, [currentUser])
-
   const loadSearch = async (event) => {
     if (event.target.value === "") {
       setSearchResult([])
@@ -63,7 +58,8 @@ function App() {
         userlist = response.data;
         break;
       case 1: //seguidores
-        userlist = [{username: 'c'}, {username: 'd'}]
+        response = await api.get(`followed/${user}`);
+        userlist = response.data;
         break;
       case 2: //recomendados
         response = await api.get(`recom`);
@@ -90,7 +86,6 @@ function App() {
   const changeUser = async () => {
     let user = prompt("Escreva o nome do usuário:");
     if (user.search(/^[a-zA-Z]+$/i) == -1) {
-      //TODO melhorar este feedback
       alert("Favor, utilizar apenas letras");
       return;
     }
@@ -124,7 +119,6 @@ function App() {
               {users.map((user) => 
                 <div className="perfil" key={user} onClick={() => changeUserView(user)}>
                   <div className="nome-perfil">{user}</div>
-                  {/* <button className="follow-button-not-followed">Seguir</button> */}
                 </div>
               )}
             </div>

@@ -22,6 +22,7 @@ def verifyName(name):
 
 def listfollowing(request, name):
     """Retorna os usuários que o usuário segue"""
+    name = name.upper()
     if not verifyName(name):
         return HttpResponseBadRequest(errors.get("nameError"))
 
@@ -29,6 +30,7 @@ def listfollowing(request, name):
 
 def listfollowed(request, name):
     """Retorna os usuários que seguem o usuário"""
+    name = name.upper()
     if not verifyName(name):
         return HttpResponseBadRequest(errors.get("nameError"))
 
@@ -71,14 +73,6 @@ def setUser(request, name:str):
 
 def searchUser(request, name):
     """Retorna um usuário com nome semelhante"""
-    # TODO implementação temporária
-    # name = name.upper()
-    # match = []
-    # for username in list(network.graph.keys()):
-    #     print(name in username)
-    #     if name in username:
-    #         match.append(username)
-    # return HttpResponse(json.dumps(match))
     name = name.upper()
     match = []
     for user in network.graph:
