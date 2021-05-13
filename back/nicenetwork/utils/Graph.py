@@ -32,8 +32,15 @@ class Graph:
         file_pointer.close()
         return graph
 
-
     def reverse_graph(self):
+        graphREverse = {key: [] for key in self.graph}
+        for name in self.graph:
+            for follow in self.graph[name]:
+                graphREverse[follow].append(name)
+        return graphREverse
+
+
+    def reverse_graph_count(self):
         """ Retorna um dicionario com o valor de cada grau no grafo reverso {nome: grau no grafo reverso}"""
         graphRcount = {}
         for value in self.graph.values():
@@ -50,7 +57,7 @@ class Graph:
         if not user:
             user = self.name
         if len(self.graph[user]) == 0:
-            suggestion = self.reverse_graph()
+            suggestion = self.reverse_graph_count()
             self.suggestion = suggestion
         else:
             suggestion = {nome: 0 for nome in self.graph}

@@ -4,6 +4,7 @@ from django.http import HttpResponse
 from django.http.response import HttpResponseBadRequest
 
 from .utils.Graph import Graph
+from .utils.sequenceAlignment import sequence_alignment
 
 import json
 
@@ -28,12 +29,10 @@ def listfollowing(request, name):
 
 def listfollowed(request, name):
     """Retorna os usuários que seguem o usuário"""
-    # if not verifyName(name):
-    #     return HttpResponseBadRequest(errors.get("nameError"))
-    # name = name.upper()
-    # reverseGraph = network.reverse_graph()
-    # return HttpResponse(json.dumps(reverseGraph.get(name)))
-    return HttpResponse("wait")
+    if not verifyName(name):
+        return HttpResponseBadRequest(errors.get("nameError"))
+
+    return HttpResponse(json.dumps(network.reverse_graph().get(name)))
 
 def listrecommendations(request):
     """Retorna uma lista de usuários recomendados para um usuário"""
@@ -54,7 +53,7 @@ def getUser(request, name:str):
     if not verifyName(name):
         return HttpResponseBadRequest(errors.get("nameError"))
     follows = network.graph.get(name)
-    reverseGraph = network.reverse_graph()
+    reverseGraph = network.reverse_graph_count()
     userStats = {
         "name": name.capitalize(),
         "followingNumber": len(follows),
@@ -73,13 +72,20 @@ def setUser(request, name:str):
 def searchUser(request, name):
     """Retorna um usuário com nome semelhante"""
     # TODO implementação temporária
+    # name = name.upper()
+    # match = []
+    # for username in list(network.graph.keys()):
+    #     print(name in username)
+    #     if name in username:
+    #         match.append(username)
+    # return HttpResponse(json.dumps(match))
     name = name.upper()
     match = []
-    for username in list(network.graph.keys()):
-        print(name in username)
-        if name in username:
-            match.append(username)
-    return HttpResponse(json.dumps(match))
+    for user in network.graph:
+        match.append((user, sequence_alignment(user, name)))
+    match.sort(key=lambda x: x[1])
+    match = [i for i, _ in match]
+    return HttpResponse(json.dumps(match[:200]))
 
 def follow(request, name):
     name = name.upper()
