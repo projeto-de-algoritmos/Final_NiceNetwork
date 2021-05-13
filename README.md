@@ -66,6 +66,7 @@ docker-compose up
 Caso prefira não utilizar o Docker, os passos para executar a aplicação de forma manual estão nos seguintes arquivos:
 
 [Backend](./back/README.md)
+
 [Frontend](./front/README.md)
 
 ## Uso 
